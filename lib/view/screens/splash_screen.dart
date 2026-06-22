@@ -110,7 +110,7 @@ class _SplashScreenState extends State<SplashScreen>
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'Poultry Manager',
+                        'PoultryPro',
                         style: TextStyle(
                           fontSize: 26,
                           fontWeight: FontWeight.w800,
@@ -122,7 +122,7 @@ class _SplashScreenState extends State<SplashScreen>
 
                       // Tagline
                       Text(
-                        'Farm Intelligence Platform',
+                        'Digital Farm Intelligence',
                         style: TextStyle(
                           fontSize: 13,
                           color: colors.onPrimary.withValues(alpha: 0.7),
