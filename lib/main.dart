@@ -9,6 +9,12 @@ import 'view/screens/auth/signup/pin_setup.dart';
 import 'view/screens/auth/signup/verification_screen.dart';
 import 'view/screens/auth/login/password_login.dart';
 import 'view/screens/auth/login/pin_login.dart';
+import 'view/screens/mainScreen/home_screen.dart';
+import 'view/screens/mainScreen/flocks_screen.dart';
+import 'view/screens/mainScreen/finance_screen.dart';
+import 'view/screens/mainScreen/production_screen.dart';
+import 'view/screens/mainScreen/settings_screen.dart';
+import 'view/screens/mainScreen/main_screen.dart';
 
 void main() {
   runApp(PoultryPro());
@@ -39,9 +45,15 @@ class PoultryPro extends StatelessWidget {
         '/ver': (context) => VerificationScreen(),
         '/piSetup': (context) => PinSetup(),
         '/paSetup': (context) => PasswordSetup(),
-        'bio': (context) => Biometrics(),
+        '/bio': (context) => Biometrics(),
         '/piLogin': (context) => PinLogin(),
-        'paLogin': (context) => PasswordLogin(),
+        '/paLogin': (context) => PasswordLogin(),
+        '/home': (context) => Home(),
+        '/flocks': (context) => Flocks(),
+        '/finance': (context) => Finance(),
+        '/production': (context) => Production(),
+        '/settings': (context) => Settings(),
+        '/main': (context) => MainScreen(),
       },
     );
   }
