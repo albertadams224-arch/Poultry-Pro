@@ -9,8 +9,9 @@ class AddViewmodel {
 
   String? validateInput() {
     if (nameController.text.isEmpty) return 'Product name must not be empty';
-    if (birdCountController.text.isEmpty)
+    if (birdCountController.text.isEmpty) {
       return 'Product name must not be empty';
+    }
     return null;
   }
 
