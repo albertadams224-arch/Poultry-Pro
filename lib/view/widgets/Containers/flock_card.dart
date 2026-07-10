@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poultry_pro/model/flock.dart';
 import 'package:poultry_pro/view/widgets/Containers/flock_info_container.dart';
+import 'package:poultry_pro/view/widgets/Containers/status_container.dart';
 
 class FlockCard extends StatelessWidget {
   const FlockCard({super.key, required this.flock});
@@ -46,7 +47,7 @@ class FlockCard extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              Padding(padding: const EdgeInsets.all(8.0), child: Text('Fresh')),
+              StatusContainer(status: 'Fresh'),
             ],
           ),
 

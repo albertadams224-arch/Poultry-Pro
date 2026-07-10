@@ -14,6 +14,7 @@ class AddFlockScreen extends ConsumerStatefulWidget {
 
 class _AddFlockScreenState extends ConsumerState<AddFlockScreen> {
   final ad = AddViewmodel();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -21,161 +22,142 @@ class _AddFlockScreenState extends ConsumerState<AddFlockScreen> {
     super.dispose();
   }
 
-  SnackBar _snackbarContent(String error) {
-    return SnackBar(
-      behavior: SnackBarBehavior.floating,
-      margin: const EdgeInsets.all(16),
-      backgroundColor: const Color(0xFFFCEBEB),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: const BorderSide(color: Color(0xFFF09595), width: 0.5),
-      ),
-      content: Row(
-        children: [
-          const Icon(Icons.cancel_outlined, color: Color(0xFFA32D2D)),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              error,
-              style: const TextStyle(
-                color: Color(0xFF501313),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ],
-      ),
-      action: SnackBarAction(
-        label: 'Dismiss',
-        textColor: const Color(0xFFA32D2D),
-        onPressed: () {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-        },
-      ),
-    );
-  }
-
   void _addFlock() {
-    final error = ad.validateInput();
-    if (error != null) {
-      ScaffoldMessenger.of(context).showSnackBar(_snackbarContent(error));
-      return;
-    }
-
+    if (!_formKey.currentState!.validate()) return;
     ref.read(flockProvider.notifier).addFlock(ad.addProduct());
     Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Add New Flock'), centerTitle: false),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Flock Details',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Enter the basic information for your new flock',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: Theme.of(
-                    context,
-                  ).colorScheme.onSurface.withValues(alpha: 0.6),
-                ),
-              ),
-              const SizedBox(height: 28),
-
-              _buildLabel(context, 'FLOCK NAME'),
-              const SizedBox(height: 8),
-              CustomTextfield(
-                hintText: 'e.g. Flock E',
-                controller: ad.nameController,
-              ),
-              const SizedBox(height: 24),
-
-              Row(
+    return SafeArea(
+      child: Form(
+        key: _formKey,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Add New Flock'),
+            centerTitle: false,
+          ),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildLabel(context, 'BIRD COUNT'),
-                        const SizedBox(height: 8),
-                        CustomTextfield(
-                          hintText: 'e.g. 200',
-                          controller: ad.birdCountController,
-                          keyboardType: TextInputType.number,
-                        ),
-                      ],
+                  Text(
+                    'Flock Details',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Enter the basic information for your new flock',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                   ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildLabel(context, 'BREED'),
-                        const SizedBox(height: 8),
-                        FlockCategoryDropdown(
-                          value: ad.selectedCategory,
-                          onChanged: (newValue) {
-                            if (newValue != null) {
-                              setState(() {
-                                ad.selectedCategory = newValue;
-                              });
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
+                  const SizedBox(height: 28),
 
-              Row(
-                children: [
-                  Expanded(
-                    child: OutlinedButton(
-                      onPressed: () => Navigator.pop(context),
-                      style: OutlinedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      child: const Text('Cancel'),
-                    ),
+                  _buildLabel(context, 'FLOCK NAME'),
+                  const SizedBox(height: 8),
+                  CustomTextfield(
+                    hintText: 'e.g. Flock E',
+                    controller: ad.nameController,
+                    validator: (value) => ad.validateName(),
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: _addFlock,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                  const SizedBox(height: 24),
+
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildLabel(context, 'BIRD COUNT'),
+                            const SizedBox(height: 8),
+                            CustomTextfield(
+                              hintText: 'e.g. 200',
+                              controller: ad.birdCountController,
+                              keyboardType: TextInputType.number,
+                              validator: (value) => ad.validateBirdCount(),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Text(
-                        'Add Flock',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimary,
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildLabel(context, 'BREED'),
+                            const SizedBox(height: 8),
+                            FlockCategoryDropdown(
+                              value: ad.selectedCategory,
+                              onChanged: (newValue) {
+                                if (newValue != null) {
+                                  setState(() {
+                                    ad.selectedCategory = newValue;
+                                  });
+                                }
+                              },
+                            ),
+                          ],
                         ),
                       ),
-                    ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  _buildLabel(context, 'Age'),
+                  const SizedBox(height: 8),
+                  CustomTextfield(
+                    hintText: '5yrs',
+                    keyboardType: TextInputType.number,
+                    controller: ad.ageController,
+                    validator: (value) => ad.validateAge(),
+                  ),
+                  const SizedBox(height: 40),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton(
+                          onPressed: () => Navigator.pop(context),
+                          style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: const Text('Cancel'),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: _addFlock,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(
+                              context,
+                            ).colorScheme.primary,
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Text(
+                            'Add Flock',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
         ),
       ),

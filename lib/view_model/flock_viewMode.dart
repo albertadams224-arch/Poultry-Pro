@@ -13,8 +13,8 @@ class FlockViewmodeNotifier extends Notifier<List<Flock>> {
 
   List<Flock> get filterFlock {
     var result = selectedCategory == null
-        ? dummyFlocks
-        : dummyFlocks.where((f) => f.category == selectedCategory).toList();
+        ? state
+        : state.where((f) => f.category == selectedCategory).toList();
     return result;
   }
 
