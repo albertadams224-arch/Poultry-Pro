@@ -59,17 +59,11 @@ class _FlocksState extends ConsumerState<Flocks> {
       ),
       body: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FlockInfoContainer(quantity: '4', title: 'Flocks'),
-              FlockInfoContainer(quantity: '1200', title: 'Birds'),
-              FlockInfoContainer(quantity: '14wks', title: 'Avg age'),
-            ],
-          ),
+          SizedBox(height: 10),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomFilterButton(
                   text: 'All',
@@ -117,6 +111,15 @@ class _FlocksState extends ConsumerState<Flocks> {
               ],
             ),
           ),
+
+          Row(
+            children: [
+              FlockInfoContainer(quantity: '4', title: 'Flocks'),
+              FlockInfoContainer(quantity: '1200', title: 'Birds'),
+              FlockInfoContainer(quantity: '14wks', title: 'Avg age'),
+            ],
+          ),
+
           Expanded(child: content),
         ],
       ),

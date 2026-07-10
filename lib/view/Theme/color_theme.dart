@@ -11,6 +11,7 @@ final lightMode = const ColorScheme(
   surface: Color(0xFFFFFFFF),
   onSurface: Color(0xFF111827),
   scrim: Color(0xFF9CA3AF),
+
   tertiary: Color(0xFF16A34A),
   onTertiary: Color(0xFFFFFFFF),
   inversePrimary: Color(0xFF2563EB),
