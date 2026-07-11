@@ -7,7 +7,7 @@ import 'package:poultry_pro/view_model/flock_viewmodel.dart';
 import 'package:poultry_pro/view/widgets/Containers/filter_chip.dart';
 import 'package:poultry_pro/view/widgets/Containers/flock_card.dart';
 import 'package:poultry_pro/view/widgets/Containers/flock_info_container.dart';
-import 'package:poultry_pro/view/screens/mainScreen/add_screen.dart';
+import 'package:poultry_pro/view/screens/mainScreen/add_flock_screen.dart';
 
 class Flocks extends ConsumerStatefulWidget {
   const Flocks({super.key});
@@ -61,17 +61,11 @@ class _FlocksState extends ConsumerState<Flocks> {
       ),
       body: Column(
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FlockInfoContainer(quantity: '4', title: 'Flocks'),
-              FlockInfoContainer(quantity: '1200', title: 'Birds'),
-              FlockInfoContainer(quantity: '14wks', title: 'Avg age'),
-            ],
-          ),
+          SizedBox(height: 10),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CustomFilterButton(
                   text: 'All',
@@ -119,6 +113,15 @@ class _FlocksState extends ConsumerState<Flocks> {
               ],
             ),
           ),
+
+          Row(
+            children: [
+              FlockInfoContainer(quantity: '4', title: 'Flocks'),
+              FlockInfoContainer(quantity: '1200', title: 'Birds'),
+              FlockInfoContainer(quantity: '14wks', title: 'Avg age'),
+            ],
+          ),
+
           Expanded(child: content),
         ],
       ),

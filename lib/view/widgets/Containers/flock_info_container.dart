@@ -18,8 +18,9 @@ class FlockInfoContainer extends StatelessWidget {
         height: 80,
 
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onTertiary,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: Theme.of(context).colorScheme.scrim),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +28,7 @@ class FlockInfoContainer extends StatelessWidget {
             Text(
               quantity,
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.scrim,
               ),
             ),
             SizedBox(height: 5),

@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:poultry_pro/model/dummy_data.dart';
 import 'package:poultry_pro/model/flock.dart';
 import 'package:poultry_pro/model/flock_category.dart';
 
@@ -13,8 +12,8 @@ class FlockViewmodeNotifier extends Notifier<List<Flock>> {
 
   List<Flock> get filterFlock {
     var result = selectedCategory == null
-        ? dummyFlocks
-        : dummyFlocks.where((f) => f.category == selectedCategory).toList();
+        ? state
+        : state.where((f) => f.category == selectedCategory).toList();
     return result;
   }
 
