@@ -17,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     Flocks(),
-    Production(),
+    ProductionScreen(),
     Home(),
     Finance(),
     Settings(),

@@ -7,7 +7,7 @@ import 'package:poultry_pro/view_model/flock_viewmodel.dart';
 import 'package:poultry_pro/view/widgets/Containers/filter_chip.dart';
 import 'package:poultry_pro/view/widgets/Containers/flock_card.dart';
 import 'package:poultry_pro/view/widgets/Containers/flock_info_container.dart';
-import 'package:poultry_pro/view/screens/mainScreen/add_screen.dart';
+import 'package:poultry_pro/view/screens/mainScreen/add_flock_screen.dart';
 
 class Flocks extends ConsumerStatefulWidget {
   const Flocks({super.key});

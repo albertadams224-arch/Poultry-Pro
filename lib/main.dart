@@ -41,11 +41,8 @@ class PoultryPro extends StatelessWidget {
         textTheme: textTheme,
       ),
       themeMode: ThemeMode.system,
-<<<<<<< HEAD
-      initialRoute: '/production',
-=======
-      initialRoute: '/',
->>>>>>> 479a4eba5062d280edad2d5cb285feba11bfe78c
+
+      initialRoute: '/main',
       routes: {
         '/': (context) => SplashScreen(),
         '/wel': (context) => WelcomeScreen(),
@@ -59,7 +56,7 @@ class PoultryPro extends StatelessWidget {
         '/home': (context) => Home(),
         '/flocks': (context) => Flocks(),
         '/finance': (context) => Finance(),
-        '/production': (context) => Production(),
+        '/production': (context) => ProductionScreen(),
         '/settings': (context) => Settings(),
         '/main': (context) => MainScreen(),
       },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:poultry_pro/view_model/add_viewmodel.dart';
+import 'package:poultry_pro/view_model/add_flock_viewmodel.dart';
 import 'package:poultry_pro/view_model/flock_viewmodel.dart';
 import 'package:poultry_pro/view/widgets/Buttons/category_dropdown_button.dart';
 import 'package:poultry_pro/view/widgets/custom_textfield.dart';
@@ -13,7 +13,7 @@ class AddFlockScreen extends ConsumerStatefulWidget {
 }
 
 class _AddFlockScreenState extends ConsumerState<AddFlockScreen> {
-  final ad = AddViewmodel();
+  final ad = AddFlockViewModel();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -58,15 +58,14 @@ class _AddFlockScreenState extends ConsumerState<AddFlockScreen> {
                     ),
                   ),
                   const SizedBox(height: 28),
-
-                  _buildLabel(context, 'FLOCK NAME'),
-                  const SizedBox(height: 8),
+                  _buildLabel(context, 'Flock name'),
                   CustomTextfield(
-                    hintText: 'e.g. Flock E',
+                    hintText: 'e.g. flockb',
                     controller: ad.nameController,
-                    validator: (value) => ad.validateName(),
+                    keyboardType: TextInputType.name,
+                    validator: (value) => ad.validateInput(),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 28),
 
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

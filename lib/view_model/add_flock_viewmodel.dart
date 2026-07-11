@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:poultry_pro/model/flock.dart';
 import 'package:poultry_pro/model/flock_category.dart';
 
-class AddViewmodel {
+class AddFlockViewModel {
   final nameController = TextEditingController();
   final birdCountController = TextEditingController();
   final ageController = TextEditingController();
   FlockCategory selectedCategory = FlockCategory.broilers;
 
-<<<<<<< HEAD:lib/view_model/add_viewModel.dart
-  String? validateName() {
-    if (nameController.text.trim().isEmpty)
-=======
   String? validateInput() {
     if (nameController.text.isEmpty) return 'Product name must not be empty';
     if (birdCountController.text.isEmpty) {
->>>>>>> 479a4eba5062d280edad2d5cb285feba11bfe78c:lib/view_model/add_viewmodel.dart
       return 'Product name must not be empty';
     }
     return null;
