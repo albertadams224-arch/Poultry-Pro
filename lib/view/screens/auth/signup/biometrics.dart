@@ -42,6 +42,7 @@ class Biometrics extends StatelessWidget {
                             icon: Icon(
                               LucideIcons.chevronLeft,
                               color: Theme.of(context).colorScheme.onPrimary,
+                              size: 20,
                             ),
                             onPressed: () {
                               Navigator.pop(context);

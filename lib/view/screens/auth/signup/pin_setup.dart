@@ -41,6 +41,7 @@ class PinSetup extends StatelessWidget {
                             icon: Icon(
                               LucideIcons.chevronLeft,
                               color: colors.onPrimary,
+                              size: 20,
                             ),
                             onPressed: () {
                               Navigator.pop(context);
