@@ -14,6 +14,7 @@ class FlockCategoryDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<FlockCategory>(
+      isExpanded: true,
       initialValue: value,
       onChanged: onChanged,
       icon: const Icon(Icons.keyboard_arrow_down),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poultry_pro/model/flock.dart';
 import 'package:poultry_pro/view/widgets/Containers/flock_info_container.dart';
+import 'package:poultry_pro/view/widgets/Containers/flock_stat_container.dart';
 import 'package:poultry_pro/view/widgets/Containers/status_container.dart';
 
 class FlockCard extends StatelessWidget {
@@ -50,17 +51,15 @@ class FlockCard extends StatelessWidget {
               StatusContainer(status: 'Fresh'),
             ],
           ),
-
+          SizedBox(height: 10),
           Row(
             children: [
-              FlockInfoContainer(
-                quantity: '${flock.birdCount}',
-                title: 'Birds',
-              ),
-              FlockInfoContainer(quantity: '${flock.ageInWeeks}', title: 'Age'),
-              FlockInfoContainer(
-                quantity: '${flock.survivalRate}',
-                title: 'Survibal',
+              Expanded(
+                child: FlockStatsRow(
+                  birdsValue: flock.birdCount.toString(),
+                  ageValue: flock.ageInWeeks.toString(),
+                  survivalValue: 'heated',
+                ),
               ),
             ],
           ),

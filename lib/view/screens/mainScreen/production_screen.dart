@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:poultry_pro/model/production.dart';
 import 'package:poultry_pro/model/production_category.dart';
 import 'package:poultry_pro/view/screens/mainScreen/add_production_sheet.dart';
 import 'package:poultry_pro/view/widgets/Containers/production_card.dart';
@@ -47,6 +48,33 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
   Widget build(BuildContext context) {
     ref.watch(productonProvider);
     final _production = ref.read(productonProvider.notifier);
+
+    void showUndoSnackBar(BuildContext context, Production production) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          content: Text(
+            'Entry deleted',
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              color: Theme.of(context).colorScheme.error,
+            ),
+          ),
+          duration: const Duration(seconds: 4),
+          action: SnackBarAction(
+            label: 'UNDO',
+            textColor: Theme.of(context).colorScheme.primary,
+            onPressed: () {
+              _production.undoRemove(production);
+            },
+          ),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -187,11 +215,19 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
                 itemCount: _production.filterProduction.length,
                 itemBuilder: (BuildContext context, index) {
                   final entry = _production.filterProduction[index];
-                  return RecentRecordTile(
-                    title:
-                        '${entry.collected} ${entry.category.name} · ${entry.broken} broken',
-                    category: entry.category,
-                    date: entry.date,
+                  return Dismissible(
+                    key: ValueKey(entry.id),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) {
+                      _production.removeProduction(entry.id);
+                      showUndoSnackBar(context, entry);
+                    },
+                    child: RecentRecordTile(
+                      title:
+                          '${entry.collected} ${entry.category.name} · ${entry.broken} broken',
+                      category: entry.category,
+                      date: entry.date,
+                    ),
                   );
                 },
               ),

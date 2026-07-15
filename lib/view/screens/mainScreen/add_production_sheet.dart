@@ -5,6 +5,7 @@ import 'package:poultry_pro/view/widgets/Buttons/production_type_dropdown_button
 import 'package:poultry_pro/view/widgets/custom_textfield.dart';
 import 'package:poultry_pro/view_model/add_production_viewmodel.dart';
 import 'package:poultry_pro/view_model/production_viewmodel.dart';
+import 'package:poultry_pro/model/production_category.dart';
 
 class AddProduction extends ConsumerStatefulWidget {
   const AddProduction({super.key});
@@ -26,6 +27,21 @@ class _AddProductionState extends ConsumerState<AddProduction> {
     if (!_formKey.currentState!.validate()) return;
     ref.read(productonProvider.notifier).addProduction(_ad.addProduct());
     Navigator.pop(context);
+  }
+
+  String _secondFieldLabel() {
+    switch (_ad.selectedCategory) {
+      case ProductionType.egg:
+        return 'BROKEN';
+      case ProductionType.vaccines:
+        return 'WASTED';
+      case ProductionType.feed:
+        return 'LEFTOVER Kg';
+      case ProductionType.mortality:
+        return 'DEAD';
+      default:
+        return 'BROKEN';
+    }
   }
 
   @override
@@ -96,7 +112,7 @@ class _AddProductionState extends ConsumerState<AddProduction> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _buildLabel(context, 'BROKEN'),
+                          _buildLabel(context, _secondFieldLabel()),
                           const SizedBox(height: 8),
                           CustomTextfield(
                             hintText: 'e.g. 3',

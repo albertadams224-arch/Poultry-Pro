@@ -1,5 +1,3 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poultry_pro/model/flock_category.dart';
@@ -40,6 +38,7 @@ class _FlocksState extends ConsumerState<Flocks> {
     }
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        heroTag: 'flocks_add_fab',
         onPressed: () {
           Navigator.of(
             context,
@@ -58,10 +57,20 @@ class _FlocksState extends ConsumerState<Flocks> {
             ),
           ],
         ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(70),
+          child: Row(
+            children: [
+              FlockInfoContainer(quantity: '4', title: 'Flocks'),
+              FlockInfoContainer(quantity: '1200', title: 'Birds'),
+              FlockInfoContainer(quantity: '14wks', title: 'Avg age'),
+            ],
+          ),
+        ),
       ),
       body: Column(
         children: [
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -113,15 +122,7 @@ class _FlocksState extends ConsumerState<Flocks> {
               ],
             ),
           ),
-
-          Row(
-            children: [
-              FlockInfoContainer(quantity: '4', title: 'Flocks'),
-              FlockInfoContainer(quantity: '1200', title: 'Birds'),
-              FlockInfoContainer(quantity: '14wks', title: 'Avg age'),
-            ],
-          ),
-
+          SizedBox(height: 10),
           Expanded(child: content),
         ],
       ),
