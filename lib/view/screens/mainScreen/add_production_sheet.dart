@@ -61,7 +61,11 @@ class _AddProductionState extends ConsumerState<AddProduction> {
               children: [
                 Text(
                   'Add  Entry',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.6),
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
@@ -86,7 +90,6 @@ class _AddProductionState extends ConsumerState<AddProduction> {
                     }
                   },
                 ),
-                const SizedBox(height: 28),
 
                 const SizedBox(height: 28),
                 Row(

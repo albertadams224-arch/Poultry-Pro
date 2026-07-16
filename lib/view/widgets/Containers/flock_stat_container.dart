@@ -14,12 +14,12 @@ class FlockStatsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dividerColor = Colors.white.withValues(alpha: 0.2);
+    final dividerColor = Theme.of(context).colorScheme.onPrimaryContainer;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.scrim,
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(12),
       ),
       child: IntrinsicHeight(
