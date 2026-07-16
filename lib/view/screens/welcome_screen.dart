@@ -26,7 +26,7 @@ class WelcomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(28),
                   boxShadow: [
                     BoxShadow(
-                      color: colorScheme.primary.withOpacity(0.25),
+                      color: colorScheme.primary.withValues(alpha: 0.25),
                       blurRadius: 24,
                       offset: const Offset(0, 12),
                     ),
@@ -56,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
                 'Manage your flock with ease.\nTrack health, feed, and production in one place.',
                 textAlign: TextAlign.center,
                 style: textTheme.bodyLarge?.copyWith(
-                  color: colorScheme.onSurface.withOpacity(0.7),
+                  color: colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
 
@@ -170,7 +170,7 @@ class _WelcomeFeature extends StatelessWidget {
           width: 48,
           height: 48,
           decoration: BoxDecoration(
-            color: colorScheme.secondary.withOpacity(0.12),
+            color: colorScheme.secondary.withValues(alpha: 0.12),
             shape: BoxShape.circle,
           ),
           child: Icon(icon, color: colorScheme.secondary, size: 24),
@@ -179,7 +179,7 @@ class _WelcomeFeature extends StatelessWidget {
         Text(
           label,
           style: textTheme.labelSmall?.copyWith(
-            color: colorScheme.onSurface.withOpacity(0.6),
+            color: colorScheme.onSurface.withValues(alpha: 0.6),
           ),
         ),
       ],
