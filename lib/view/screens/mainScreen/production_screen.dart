@@ -134,7 +134,7 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
                           onTap: () {
                             setState(() {
                               _isSelected = 'Eggs';
-                              production.selectedCategory = ProductionType.egg;
+                              _production.selectedCategory = ProductionType.egg;
                               _name = 'Eggs';
                             });
                           },
@@ -147,7 +147,7 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
                           onTap: () {
                             setState(() {
                               _isSelected = 'Feed';
-                              production.selectedCategory =
+                              _production.selectedCategory =
                                   ProductionType.feed;
                               _name = 'Feed';
                             });
@@ -161,7 +161,7 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
                           onTap: () {
                             setState(() {
                               _isSelected = 'Vaccines';
-                              production.selectedCategory =
+                              _production.selectedCategory =
                                   ProductionType.vaccines;
                               _name = 'Vaccines';
                             });
@@ -175,7 +175,7 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
                           onTap: () {
                             setState(() {
                               _isSelected = 'Mortality';
-                              production.selectedCategory =
+                              _production.selectedCategory =
                                   ProductionType.mortality;
                             });
                           },
@@ -202,9 +202,9 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProductionStatCard(
-              category: production.selectedCategory ?? ProductionType.egg,
-              quantity: production.totalCollected,
-              secondaryValue: production.totalBroken,
+              category: _production.selectedCategory ?? ProductionType.egg,
+              quantity: _production.totalCollected,
+              secondaryValue: _production.totalBroken,
             ),
 
             SizedBox(height: 20),
@@ -213,14 +213,14 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
                 Expanded(
                   child: ProductionCard(
                     title: 'This week',
-                    count: production.thisWeekTotal,
+                    count: _production.thisWeekTotal,
                   ),
                 ),
                 SizedBox(width: 8),
                 Expanded(
                   child: ProductionCard(
                     title: 'Avg/Day',
-                    count: production.avgPerDay.round(),
+                    count: _production.avgPerDay.round(),
                   ),
                 ),
               ],
@@ -240,7 +240,7 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: production.filterProduction.length,
+                itemCount: _production.filterProduction.length,
                 itemBuilder: (BuildContext context, index) {
                   final entry = _production.filterProduction[index];
                   return Dismissible(
