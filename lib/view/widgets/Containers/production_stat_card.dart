@@ -35,7 +35,7 @@ class ProductionStatCard extends StatelessWidget {
       case ProductionType.vaccines:
         return ' doses';
       case ProductionType.mortality:
-        return ' birds sick';
+        return '';
     }
   }
 
@@ -48,7 +48,7 @@ class ProductionStatCard extends StatelessWidget {
       case ProductionType.vaccines:
         return 'wasted';
       case ProductionType.mortality:
-        return 'dead';
+        return 'missing';
     }
   }
 

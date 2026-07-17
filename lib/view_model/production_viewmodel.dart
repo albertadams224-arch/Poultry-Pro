@@ -41,7 +41,6 @@ class ProductionViewmodel extends Notifier<List<Production>> {
 
   double get avgPerDay {
     if (thisWeekProduction.isEmpty) return 0;
-
     return thisWeekTotal / 7;
   }
 

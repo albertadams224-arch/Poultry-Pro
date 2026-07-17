@@ -246,13 +246,29 @@ class _ProductionState extends ConsumerState<ProductionScreen> {
                   return Dismissible(
                     key: ValueKey(entry.id),
                     direction: DismissDirection.endToStart,
+                    background: Container(
+                      margin: const EdgeInsets.all(10),
+                      alignment: Alignment.centerRight,
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.primary.withValues(alpha: 0.08),
+
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Icon(
+                        Icons.delete,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    ),
                     onDismissed: (direction) {
                       _production.removeProduction(entry.id);
                       showUndoSnackBar(context, entry);
                     },
                     child: RecentRecordTile(
                       title:
-                          '${entry.collected} ${entry.category.name} · ${entry.broken} ${entry.category.name}',
+                          '${entry.collected} ${entry.category.name} · ${entry.broken} ${entry.category.secondaryLabel}',
                       category: entry.category,
                       date: entry.date,
                     ),

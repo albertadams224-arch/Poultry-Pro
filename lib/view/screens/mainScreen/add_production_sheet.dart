@@ -38,7 +38,7 @@ class _AddProductionState extends ConsumerState<AddProduction> {
       case ProductionType.feed:
         return 'LEFTOVER Kg';
       case ProductionType.mortality:
-        return 'DEAD';
+        return 'MISSING';
       default:
         return 'BROKEN';
     }
@@ -46,15 +46,15 @@ class _AddProductionState extends ConsumerState<AddProduction> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.9,
       ),
-      child: SafeArea(
+      child: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
+            padding: const EdgeInsets.only(bottom: 24),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +90,6 @@ class _AddProductionState extends ConsumerState<AddProduction> {
                     }
                   },
                 ),
-
                 const SizedBox(height: 28),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +120,6 @@ class _AddProductionState extends ConsumerState<AddProduction> {
                             hintText: 'e.g. 3',
                             controller: _ad.brokenController,
                             keyboardType: TextInputType.number,
-                            // validator: (value) => _ad.validateBrokem(),
                           ),
                         ],
                       ),

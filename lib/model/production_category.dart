@@ -14,3 +14,18 @@ extension ProductionTypeLabel on ProductionType {
     }
   }
 }
+
+extension ProductionTypeSecondaryLabel on ProductionType {
+  String get secondaryLabel {
+    switch (this) {
+      case ProductionType.egg:
+        return 'broken';
+      case ProductionType.feed:
+        return 'kg remaining';
+      case ProductionType.vaccines:
+        return 'wasted';
+      case ProductionType.mortality:
+        return 'missing';
+    }
+  }
+}

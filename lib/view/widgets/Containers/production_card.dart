@@ -17,7 +17,7 @@ class ProductionCard extends StatelessWidget {
           BoxShadow(
             color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
             blurRadius: 8,
-            offset: const Offset(0, 2), // x: 0, y: 2 (shadow falls downward)
+            offset: const Offset(0, 2),
             spreadRadius: 0,
           ),
         ],
