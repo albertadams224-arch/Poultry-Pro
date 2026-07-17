@@ -41,8 +41,7 @@ class PoultryPro extends StatelessWidget {
         textTheme: textTheme,
       ),
       themeMode: ThemeMode.system,
-
-      initialRoute: '/main',
+      initialRoute: '/',
       routes: {
         '/': (context) => SplashScreen(),
         '/wel': (context) => WelcomeScreen(),
@@ -51,8 +50,8 @@ class PoultryPro extends StatelessWidget {
         '/piSetup': (context) => PinSetup(),
         '/paSetup': (context) => PasswordSetup(),
         '/bio': (context) => Biometrics(),
-        '/piLogin': (context) => PinLogin(),
-        '/paLogin': (context) => PasswordLogin(),
+        '/piLogin': (context) => PinLoginScreen(),
+        '/paLogin': (context) => PasswordLoginScreen(),
         '/home': (context) => Home(),
         '/flocks': (context) => Flocks(),
         '/finance': (context) => Finance(),
