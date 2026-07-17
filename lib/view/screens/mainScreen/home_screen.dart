@@ -22,7 +22,6 @@ class Home extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Full-bleed header, no outer padding applied
               DashboardHeader(
                 farmName: "Sunrise Poultry Farm",
                 netProfit: "GHS 4,820",
@@ -30,48 +29,55 @@ class Home extends StatelessWidget {
                 monthLabel: "June 2026",
               ),
               SizedBox(height: screenHeight * 0.025),
-              // Everything below gets consistent page padding
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        StatCard(
-                          title: "TOTAL BIRDS",
-                          value: "1,240",
-                          stat: "4 active flocks",
-                          icon: LucideIcons.feather,
-                          iconColor: colors.primary,
+                        Expanded(
+                          child: StatCard(
+                            title: "TOTAL BIRDS",
+                            value: "1,240",
+                            stat: "4 active flocks",
+                            icon: LucideIcons.feather,
+                            iconColor: colors.primary,
+                          ),
                         ),
-                        StatCard(
-                          title: "EGGS TODAY",
-                          value: "318",
-                          stat: "4% vs yesterday",
-                          icon: LucideIcons.egg,
-                          iconColor: colors.primary,
+                        SizedBox(width: screenWidth * 0.03),
+                        Expanded(
+                          child: StatCard(
+                            title: "EGGS TODAY",
+                            value: "318",
+                            stat: "4% vs yesterday",
+                            icon: LucideIcons.egg,
+                            iconColor: colors.primary,
+                          ),
                         ),
                       ],
                     ),
                     SizedBox(height: screenHeight * 0.015),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        StatCard(
-                          title: "FEED STOCK",
-                          value: "420 kg",
-                          stat: "12 days left",
-                          icon: LucideIcons.utensils,
-                          iconColor: colors.secondary,
+                        Expanded(
+                          child: StatCard(
+                            title: "FEED STOCK",
+                            value: "420 kg",
+                            stat: "12 days left",
+                            icon: LucideIcons.utensils,
+                            iconColor: colors.secondary,
+                          ),
                         ),
-                        StatCard(
-                          title: "MORTALITY",
-                          value: "3",
-                          stat: "This week",
-                          icon: LucideIcons.skull,
-                          iconColor: colors.error,
+                        SizedBox(width: screenWidth * 0.03),
+                        Expanded(
+                          child: StatCard(
+                            title: "MORTALITY",
+                            value: "3",
+                            stat: "This week",
+                            icon: LucideIcons.skull,
+                            iconColor: colors.error,
+                          ),
                         ),
                       ],
                     ),
